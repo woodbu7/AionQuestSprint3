@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheAionProject.S3_Solution", "TheAionProject.S3_Solution\TheAionProject.S3_Solution.csproj", "{D525C7A8-8175-4678-8B19-0674040A17F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheAionProject.S3_Starter", "TheAionProject.S3_Starter\TheAionProject.S3_Starter.csproj", "{7F34B8D9-7DFA-4F57-8D7A-22BFE7F99E0E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D525C7A8-8175-4678-8B19-0674040A17F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D525C7A8-8175-4678-8B19-0674040A17F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D525C7A8-8175-4678-8B19-0674040A17F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D525C7A8-8175-4678-8B19-0674040A17F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F34B8D9-7DFA-4F57-8D7A-22BFE7F99E0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F34B8D9-7DFA-4F57-8D7A-22BFE7F99E0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F34B8D9-7DFA-4F57-8D7A-22BFE7F99E0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F34B8D9-7DFA-4F57-8D7A-22BFE7F99E0E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

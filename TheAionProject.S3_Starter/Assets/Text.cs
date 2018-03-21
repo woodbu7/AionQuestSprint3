@@ -363,6 +363,42 @@ namespace TheAionProject
             return messageTextBox;
         }
 
+        public static string CurrentInventory(IEnumerable<TravelerObject> inventory)
+        {
+            string messageBoxText = "";
+
+            //
+            // display table header
+            //
+            messageBoxText =
+                "ID".PadRight(10) +
+                "Name".PadRight(30) +
+                "Typye".PadRight(10) +
+                "\n" +
+                "---".PadRight(10) +
+                "-----------------------------".PadRight(30) +
+                "-------------------------".PadRight(10) +
+                "\n";
+
+            //
+            // display all traveler objects in rows
+            //
+            string inventoryObjectRows = null;
+            foreach (TravelerObject inventoryObject in inventory)
+            {
+                inventoryObjectRows +=
+                $"{inventoryObject.Id}".PadRight(10) +
+                $"{inventoryObject.Name}".PadRight(30) +
+                $"{inventoryObject.Type}".PadRight(10) +
+                Environment.NewLine;
+
+            }
+
+            messageBoxText += inventoryObjectRows;
+
+            return messageBoxText;
+        }
+
         #endregion
 
         public static List<string> StatusBox(Traveler traveler, Universe universe)
@@ -375,5 +411,6 @@ namespace TheAionProject
 
             return statusBoxText;
         }
+
     }
 }

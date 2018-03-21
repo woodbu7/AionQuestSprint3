@@ -50,9 +50,12 @@ namespace TheAionProject
                     { '1', TravelerAction.TravelerInfo },
                     { '2', TravelerAction.LookAround },
                     { '3', TravelerAction.LookAt },
-                    { '4', TravelerAction.Travel },
-                    { '5', TravelerAction.TravelerLocationsVisited },
-                    { '6', TravelerAction.AdminMenu},  
+                    { '4', TravelerAction.PickUp },
+                    { '5', TravelerAction.PutDown },
+                    { '6', TravelerAction.Inventory },
+                    { '7', TravelerAction.Travel },
+                    { '8', TravelerAction.TravelerLocationsVisited },
+                    { '9', TravelerAction.AdminMenu},  
                     { '0', TravelerAction.Exit }
                 }
         };

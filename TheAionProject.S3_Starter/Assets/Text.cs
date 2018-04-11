@@ -258,6 +258,52 @@ namespace TheAionProject
             return messageBoxText;
         }
 
+        public static string HeartStonesFound(GameObject gameObject)
+        {
+            string messageBoxText =
+                "Congratulations! \n" +
+                "You have found both heart stones, you are therefore rewarded with an extra life. \n" +
+                " \n" +
+                $"{gameObject.Name} has been added to your inventory.";
+
+            return messageBoxText;
+        }
+
+        public static string RadiarionFound(GameObject gameObject)
+        {
+            string messageBoxText =
+                "Oh no! \n" +
+                $"You picked up {gameObject.Name} which contains radiation. Unfortunatley you were exposed to it.\n" +
+                "You lost 30 health points. \n" +
+                " \n" +
+                $"{gameObject.Name} has been added to your inventory.";
+
+            return messageBoxText;
+        }
+
+        public static string BombFound(GameObject gameObject)
+        {
+            string messageBoxText =
+                "KABOOOOOOM!!!! \n" +
+                $"The {gameObject.Name} you picked up detonated and blew you to pieces.\n" +
+                "You lost a life. \n" +
+                " \n" +
+                $"{gameObject.Name} blew up and can't be added to your inventory.";
+
+            return messageBoxText;
+        }
+
+        public static string Transporter(GameObject gameObject, SpaceTimeLocation newLocation)
+        {
+            string messageBoxText =
+                "WOW!!\n" +
+                $"The transporter worked. You have been transported to {newLocation.CommonName}.\n" +
+                " \n" +
+                $"{gameObject.Name} was aslo added to your inevntory.";
+
+            return messageBoxText;
+        }
+
         #endregion
 
         #region LIST GAME OBJECTS

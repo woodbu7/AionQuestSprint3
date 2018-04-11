@@ -127,6 +127,17 @@ namespace TheAionProject
             return Console.ReadLine();
         }
 
+        public int GetRandomNumber()
+        {
+            int randomId = 0;
+            int maxId = _gameUniverse.GetMaxSpaceTimeLocationId();
+
+            Random number = new Random();
+            randomId = number.Next(1, maxId);
+
+            return randomId;
+        }
+
         /// <summary>
         /// get an integer value from the user
         /// </summary>
@@ -706,7 +717,7 @@ namespace TheAionProject
                     //
                     // get an integer from the player
                     //
-                    GetInteger($"Enter the Id number of the object you wish to add to your inventory", 0, 0, out gameObjectId);
+                    GetInteger($"Enter the Id number of the object you wish to add to your inventory: ", 0, 0, out gameObjectId);
 
                     //
                     // validate integer as a valid game object id in current location
@@ -756,7 +767,7 @@ namespace TheAionProject
                 while (!validInventoryObject)
                 {
 
-                    GetInteger($"Enter the Id number of the object you wish to remove from your inventory", 0, 0, out travelerObjectId);
+                    GetInteger($"Enter the Id number of the object you wish to remove from your inventory: ", 0, 0, out travelerObjectId);
 
                     //
                     // find object in inventory
@@ -787,7 +798,7 @@ namespace TheAionProject
 
         public void DisplayConfirmTravelerObjectRemovedFromInventory(TravelerObject objectRemovedFromInventory)
         {
-            DisplayGamePlayScreen("Put Down Game Object", $"The {objectRemovedFromInventory} has been removed from your inventory", ActionMenu.MainMenu, "");
+            DisplayGamePlayScreen("Put Down Game Object", $"The {objectRemovedFromInventory.Name} has been removed from your inventory", ActionMenu.MainMenu, "");
         }
 
         #endregion

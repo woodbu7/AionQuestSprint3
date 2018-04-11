@@ -140,16 +140,7 @@ namespace TheAionProject
                         break;
 
                     case TravelerAction.Travel:
-                        //
-                        // get new location choice and update the current location property
-                        //                        
-                        _gameTraveler.SpaceTimeLocationID = _gameConsoleView.DisplayGetNextSpaceTimeLocation();
-                        _currentLocation = _gameUniverse.GetSpaceTimeLocationById(_gameTraveler.SpaceTimeLocationID);
-
-                        //
-                        // display the new space-time location info
-                        //
-                        _gameConsoleView.DisplayCurrentLocationInfo();
+                        TravelAction();
                         break;
 
                     case TravelerAction.TravelerLocationsVisited:
@@ -238,6 +229,34 @@ namespace TheAionProject
             }
         }
 
+        private void TravelAction()
+        {
+            
+            GameObject keyObject = _gameUniverse.GetGameObjectById(10);
+
+            //
+            // Looks for the key object in the traveler's inventory. If found set all locations accesbility to true
+            //
+            if (_gameTraveler.Inventory.Contains(keyObject))
+            {
+                foreach (SpaceTimeLocation location in _gameUniverse.SpaceTimeLocations)
+                {
+                    location.Accessible = true;
+                }
+            }
+
+            //
+            // get new location choice and update the current location property
+            // 
+            _gameTraveler.SpaceTimeLocationID = _gameConsoleView.DisplayGetNextSpaceTimeLocation();
+            _currentLocation = _gameUniverse.GetSpaceTimeLocationById(_gameTraveler.SpaceTimeLocationID);
+
+            //
+            // display the new space-time location info
+            //
+            _gameConsoleView.DisplayCurrentLocationInfo();
+        }
+
         private void LookAtAction()
         {
             //
@@ -278,17 +297,50 @@ namespace TheAionProject
                 // get the game object from the universe
                 //
                 TravelerObject travelerObject = _gameUniverse.GetGameObjectById(travelerObjectToPickUpId) as TravelerObject;
-
                 //
                 // note: traveler object is added to list and space-time location is set to 0
-                //
                 _gameTraveler.Inventory.Add(travelerObject);
                 travelerObject.SpaceTimeLocationId = 0;
+                _gameTraveler.ExperiencePoints += travelerObject.ExperiencePoints;
 
-                //
-                // display confirmation message
-                //
-                _gameConsoleView.DisplayConfirmTravelerObjectAddedToInventory(travelerObject);
+                if (travelerObject.Id == 11 && _gameTraveler.Inventory.Contains(_gameUniverse.GetGameObjectById(12)) || travelerObject.Id == 12 && _gameTraveler.Inventory.Contains(_gameUniverse.GetGameObjectById(11)))
+                {
+                    _gameTraveler.Lives += 1;
+                    _gameConsoleView.DisplayGamePlayScreen("Pick Up Game Object", Text.HeartStonesFound(travelerObject), ActionMenu.MainMenu, "");
+                }
+                else if (travelerObject.Id == 13)
+                {
+                    _gameTraveler.Health -= 30;
+                    _gameConsoleView.DisplayGamePlayScreen("Pick Up Game Object", Text.RadiarionFound(travelerObject), ActionMenu.MainMenu, "");
+
+                }
+                else if (travelerObject.Id == 14)
+                {
+                    _gameTraveler.Lives -= 1;
+                    _gameTraveler.Inventory.Remove(travelerObject);
+                    _gameTraveler.SpaceTimeLocationID = -1;
+                    _gameConsoleView.DisplayGamePlayScreen("Pick Up Game Object", Text.BombFound(travelerObject), ActionMenu.MainMenu, "");
+
+                }
+                else if (travelerObject.Id == 15)
+                {
+                    int newId;
+                    int currentId = _currentLocation.SpaceTimeLocationID;
+                    do
+                    {
+                        newId = _gameConsoleView.GetRandomNumber();
+                        _gameTraveler.SpaceTimeLocationID = newId;
+                        _currentLocation = _gameUniverse.GetSpaceTimeLocationById(_gameTraveler.SpaceTimeLocationID);
+                    } while (newId == currentId);
+                    _gameConsoleView.DisplayGamePlayScreen("Pick Up Game Object", Text.Transporter(travelerObject, _currentLocation), ActionMenu.MainMenu, "");
+
+                }
+                else
+                {
+                    _gameConsoleView.DisplayConfirmTravelerObjectAddedToInventory(travelerObject);
+                }
+                
+
             }
         }
 
@@ -308,7 +360,7 @@ namespace TheAionProject
             // remove the object from inventry and set the space-time location to the current value
             //
             _gameTraveler.Inventory.Remove(travelerObject);
-            travelerObject.SpaceTimeLocationId = -1;
+            travelerObject.SpaceTimeLocationId = _currentLocation.SpaceTimeLocationID;
 
             //
             // display confirmation message
